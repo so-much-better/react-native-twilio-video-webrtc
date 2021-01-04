@@ -387,7 +387,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
 
     public void connectToRoomWrapper(
             String roomName, String accessToken, boolean enableAudio, boolean enableVideo,
-            boolean enableRemoteAudio, boolean enableNetworkQualityReporting, simulcast) {
+            boolean enableRemoteAudio, boolean enableNetworkQualityReporting, boolean simulcast) {
         this.roomName = roomName;
         this.accessToken = accessToken;
         this.enableRemoteAudio = enableAudio;
