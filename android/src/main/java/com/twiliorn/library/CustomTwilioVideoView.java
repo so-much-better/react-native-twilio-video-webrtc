@@ -437,6 +437,10 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
                      NetworkQualityVerbosity.NETWORK_QUALITY_VERBOSITY_MINIMAL));
          }
 
+         if (simulcast) {
+            connectOptionsBuilder.preferredVideoCodecs(Collections.<VideoCodec>singletonList(new Vp8Codec(true)));
+        }
+
         room = Video.connect(getContext(), connectOptionsBuilder.build(), roomListener());
     }
 

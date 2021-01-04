@@ -377,7 +377,7 @@ RCT_EXPORT_METHOD(getStats) {
   }
 }
 
-RCT_EXPORT_METHOD(connect:(NSString *)accessToken roomName:(NSString *)roomName enableVideo:(BOOL *)enableVideo encodingParameters:(NSDictionary *)encodingParameters enableNetworkQualityReporting:(BOOL *)enableNetworkQualityReporting) {
+RCT_EXPORT_METHOD(connect:(NSString *)accessToken roomName:(NSString *)roomName enableVideo:(BOOL *)enableVideo encodingParameters:(NSDictionary *)encodingParameters enableNetworkQualityReporting:(BOOL *)enableNetworkQualityReporting simulcast:(BOOL *)simulcast) {
   if (enableVideo) {
     [self startCameraCapture];
   }
@@ -400,8 +400,12 @@ RCT_EXPORT_METHOD(connect:(NSString *)accessToken roomName:(NSString *)roomName 
 
     builder.roomName = roomName;
 
-    if(encodingParameters[@"enableH264Codec"]){
-      builder.preferredVideoCodecs = @[ [TVIH264Codec new] ];
+    if(simulcast){
+      builder.preferredVideoCodecs = [ [TVIVp8Codec alloc] initWithSimulcast: true];
+    } else {
+      if(encodingParameters[@"enableH264Codec"]){
+        builder.preferredVideoCodecs = @[ [TVIH264Codec new] ];
+      }
     }
 
     if(encodingParameters[@"audioBitrate"] || encodingParameters[@"videoBitrate"]){

@@ -106,6 +106,7 @@ declare module "react-native-twilio-video-webrtc" {
       videoBitrate?: number;
     };
     enableNetworkQualityReporting?: boolean;
+    simulcast?: boolean;
   };
 
   type androidConnectParams = {
@@ -115,6 +116,7 @@ declare module "react-native-twilio-video-webrtc" {
     enableVideo?: boolean;
     enableRemoteAudio?: boolean;
     enableNetworkQualityReporting?: boolean;
+    simulcast?: boolean;
   };
 
   class TwilioVideo extends React.Component<TwilioVideoProps> {
