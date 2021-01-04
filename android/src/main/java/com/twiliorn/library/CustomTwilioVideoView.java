@@ -442,7 +442,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
          }
 
          if (simulcast) {
-            connectOptionsBuilder.preferredVideoCodecs(Collections.<VideoCodec>singletonList(new Vp8Codec(true)));
+            connectOptionsBuilder.preferVideoCodecs(Collections.<VideoCodec>singletonList(new Vp8Codec(true)));
         }
 
         room = Video.connect(getContext(), connectOptionsBuilder.build(), roomListener());
