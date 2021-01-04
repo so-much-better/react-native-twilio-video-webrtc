@@ -401,7 +401,9 @@ RCT_EXPORT_METHOD(connect:(NSString *)accessToken roomName:(NSString *)roomName 
     builder.roomName = roomName;
 
     if(simulcast){
-      builder.preferredVideoCodecs = [ [TVIVp8Codec alloc] initWithSimulcast: true];
+      TVIVideoCodec *simulcastCodec = [[TVIVp8Codec alloc] initWithSimulcast: true];
+      NSArray *codecsArray = [NSArray arrayWithObjects: simulcastCodec, nil];
+      builder.preferredVideoCodecs = codecsArray;
     } else {
       if(encodingParameters[@"enableH264Codec"]){
         builder.preferredVideoCodecs = @[ [TVIH264Codec new] ];
