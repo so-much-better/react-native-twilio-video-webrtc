@@ -107,6 +107,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
     private boolean enableRemoteAudio = false;
     private boolean enableNetworkQualityReporting = false;
     private boolean isVideoEnabled = false;
+    private boolean simulcast = false;
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({Events.ON_CAMERA_SWITCHED,
@@ -386,11 +387,12 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
 
     public void connectToRoomWrapper(
             String roomName, String accessToken, boolean enableAudio, boolean enableVideo,
-            boolean enableRemoteAudio, boolean enableNetworkQualityReporting) {
+            boolean enableRemoteAudio, boolean enableNetworkQualityReporting, simulcast) {
         this.roomName = roomName;
         this.accessToken = accessToken;
         this.enableRemoteAudio = enableAudio;
         this.enableNetworkQualityReporting = enableNetworkQualityReporting;
+        this.simulcast = simulcast;
 
         // Share your microphone
         localAudioTrack = LocalAudioTrack.create(getContext(), enableAudio);
