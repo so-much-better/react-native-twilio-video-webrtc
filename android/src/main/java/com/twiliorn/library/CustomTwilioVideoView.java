@@ -71,6 +71,7 @@ import com.twilio.video.TwilioException;
 import com.twilio.video.Video;
 import com.twilio.video.VideoConstraints;
 import com.twilio.video.VideoDimensions;
+import com.twilio.video.Vp8Codec;
 
 import org.webrtc.voiceengine.WebRtcAudioManager;
 
