@@ -169,9 +169,25 @@ class CustomTwilioVideoView extends Component {
     accessToken,
     enableAudio = true,
     enableVideo = true,
-    enableRemoteAudio = true,
+    encodingParameters = {
+      "enableH264Codec": false,
+      "audioBitrate": -1,
+      "videoBitrate": -1
+    },
     enableNetworkQualityReporting = false,
     dominantSpeakerEnabled = false,
+    bandwidthProfileOptions = {
+      "mode":"",
+      "maxTracks": -1,
+      "maxSubscriptionBitrate": -1,
+      "dominantSpeakerPriority": "",
+      "renderDimensions": {
+        "low": "",
+        "standard": "",
+        "high": "",
+      },
+      "trackSwitchOffMode":"",
+    },
     simulcast = false,
   }) {
     this.runCommand(nativeEvents.connectToRoom, [
@@ -179,9 +195,10 @@ class CustomTwilioVideoView extends Component {
       accessToken,
       enableAudio,
       enableVideo,
-      enableRemoteAudio,
+      encodingParameters,
       enableNetworkQualityReporting,
       dominantSpeakerEnabled,
+      bandwidthProfileOptions,
       simulcast,
     ])
   }
@@ -220,8 +237,8 @@ class CustomTwilioVideoView extends Component {
     this.runCommand(nativeEvents.switchCamera, [])
   }
 
-  setLocalVideoEnabled (enabled) {
-    this.runCommand(nativeEvents.toggleVideo, [enabled])
+  setLocalVideoEnabled (enabled, cameraSettings) {
+    this.runCommand(nativeEvents.toggleVideo, [enabled, cameraSettings])
     return Promise.resolve(enabled)
   }
 
@@ -238,6 +255,10 @@ class CustomTwilioVideoView extends Component {
   setBluetoothHeadsetConnected (enabled) {
     this.runCommand(nativeEvents.toggleBluetoothHeadset, [enabled])
     return Promise.resolve(enabled)
+  }
+  
+  setTrackPriority (trackSid, priority) {
+    this.runCommand(nativeEvents.setTrackPriority, [trackSid, priority])
   }
 
   getStats () {
