@@ -119,7 +119,7 @@ public class CustomTwilioVideoView extends View implements LifecycleEventListene
     private static final String TAG = "CustomTwilioVideoView";
     private static final String DATA_TRACK_MESSAGE_THREAD_NAME = "DataTrackMessages";
 
-    private static final VideoDimensions DEFAULT_MAX_CAPTURE_RESOLUTION = VideoDimensions.CIF_VIDEO_DIMENSIONS;
+    private static final VideoDimensions DEFAULT_MAX_CAPTURE_RESOLUTION = VideoDimensions.HD_720P_VIDEO_DIMENSIONS;
     private static final int DEFAULT_MAX_CAPTURE_FPS = 25;
 
     private boolean enableNetworkQualityReporting = false;
